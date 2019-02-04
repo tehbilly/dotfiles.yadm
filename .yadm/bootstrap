@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Handle any submodules added to yadm
+pushd $HOME
+yadm submodule update --recursive --init
+popd
