@@ -1,6 +1,24 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Handle any submodules added to yadm
 pushd $HOME
 yadm submodule update --recursive --init
 popd
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    # Install homebrew if it's missing
+    if ! command -v brew >/dev/null 2>&1; then
+        echo "Installing homebrew"
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+
+    # If a Brewfile exists, use it
+    if [ -f "$HOME/.Brewfile" ]; then
+        echo "Updating homebrew bundle"
+        brew bundle --global
+    fi
+
+    # Create symlink for bat configuration to be in XDG-friendly location
+    ln -s $HOME/.config/bat $HOME/Library/Preferences/bat
+fi
