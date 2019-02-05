@@ -14,6 +14,10 @@ if command -v aria2c >/dev/null 2>&1; then
     alias get='aria2c'
 fi
 
+if command -v bat >/dev/null 2>&1; then
+    alias cat='bat'
+fi
+
 # Directory listing
 if command -v exa >/dev/null 2>&1; then
 	alias ls='exa'
