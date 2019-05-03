@@ -35,7 +35,7 @@ fi
 # Base16 Shell: https://github.com/chriskempson/base16-shell
 # TODO: Make 'er a submodule, or quick way to clone if needed
 BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-tomorrow-night.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+[[ -s "${BASE16_SHELL}" ]] && source "${BASE16_SHELL}"
 
 # Add cargo to path if directory exists
 if [[ -e "$HOME/.cargo/bin" ]]; then
@@ -49,6 +49,11 @@ fi
 
 # fzf bash integration, if exists
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Use GNU tools over default if present
+if [[ -e "/opt/local/libexec/gnubin" ]]; then
+    export PATH="/opt/local/libexec/gnubin:$PATH"
+fi
 
 # If we have pdedupe available, use it to clean up our PATH
 # -e excludes paths that are added but don't exist
