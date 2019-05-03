@@ -55,6 +55,9 @@ if [[ -e "/opt/local/libexec/gnubin" ]]; then
     export PATH="/opt/local/libexec/gnubin:$PATH"
 fi
 
+# Configuration file for ripgrep must be specified in an environment variable
+export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgrep/.ripgreprc"
+
 # If we have pdedupe available, use it to clean up our PATH
 # -e excludes paths that are added but don't exist
 command -v pdedupe > /dev/null 2>&1 && export PATH=$(pdedupe -e)
