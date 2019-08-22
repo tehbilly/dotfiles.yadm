@@ -42,6 +42,11 @@ if [[ -e "$HOME/.cargo/bin" ]]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# Add ~/.local/bin to path if it exists
+if [[ -e "$HOME/.local/bin" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # If ~/.bashrc.local exists, source it
 if [[ -e "$HOME/.bashrc.local" ]]; then
     source "$HOME/.bashrc.local"
@@ -53,6 +58,11 @@ fi
 # Use GNU tools over default if present
 if [[ -e "/opt/local/libexec/gnubin" ]]; then
     export PATH="/opt/local/libexec/gnubin:$PATH"
+fi
+
+# Add dotnet global tools to path
+if [[ -e "$HOME/.dotnet/tools" ]]; then
+    export PATH="$PATH:$HOME/.dotnet/tools"
 fi
 
 # Configuration file for ripgrep must be specified in an environment variable

@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
 # grep aliases
-alias grep="grep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
+if command -v rg >/dev/null 2>&1; then
+    alias grep="rg"
+else
+    alias grep="grep --color=auto"
+    alias fgrep="fgrep --color=auto"
+    alias egrep="egrep --color=auto"
+fi
 
 # This stops find from flooding stderr for permission issues
 alias find="find ${@} 2>/dev/null"

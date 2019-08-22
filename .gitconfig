@@ -10,3 +10,6 @@
     up=pull --rebase --autostash
 [color]
     ui = auto
+# Include a file for local overrides, if it exists
+[include]
+    path = ~/.gitconfig.local
